@@ -16,20 +16,50 @@ int main(){
 for(int i = 1; i<=35 ; i++){
         cout << "=";
     }
-    cout << endl;;
-    cout << "I am thinking of a number between 1 and 100. Can you guess it?" << endl;
+    cout << endl;
     int number, guess, n1=0;
     char c = 'y';
+    int maxn;
     
+    int choice=0;
+    cout << "Choose difficulty: \n" << "1. Easy = number between 1 and 50 \n" << "2. Medium = number between 1 and 100 \n" << "3. Hard = number between 1 and 500 \n" << endl;
+    cout << "Enter your choice respectively " << endl;
+    cin >> choice ;
+     srand(time(0));
+
+    if(choice==1){
+    cout << "I am thinking of a number between 1 and 50. Can you guess it?" << endl;
+     maxn=50;
+    number = rand()%50+ 1;
+    }
+    else if(choice==2){
+     cout << "I am thinking of a number between 1 and 100. Can you guess it?" << endl;
+      maxn=100;
+     number = rand()%100+ 1;
+    }
+    else if(choice==3){
+    cout << "I am thinking of a number between 1 and 500. Can you guess it?" << endl;
+     maxn=500;
+    number = rand()%500+ 1;
+    }
+
+
+
+
   
-    srand(time(0));
-    number = rand()%100 + 1;
+   
     guess = 0;
+    if(choice==1 || choice==2 || choice==3){
     while(c=='y'){
     while(n1!=number){
     cout << "Enter your guess" << endl;
     cin >> n1;
-    if(n1>= 1 && n1<=100){
+    if(cin.fail()){
+        cin.clear();
+        cin.ignore(1000,'\n');
+      continue;
+    }
+    if(n1>= 1 && n1<=maxn){
     
     guess++;
 
@@ -43,12 +73,15 @@ for(int i = 1; i<=35 ; i++){
         cout << "Do you want to play again? (y/n)" << endl;
         cin >> c;
         if(c=='y'){
-            srand(time(0));
-            number = rand()%100+1;
+           
+            
+            number = rand()%maxn+1;
             guess = 0;
         } 
         else{
+            choice =-1;
          cout << "Thank you for playing" << endl;
+
         }
     }
     else if(n1>number){
@@ -61,14 +94,22 @@ for(int i = 1; i<=35 ; i++){
         cout << "It is TOO LOW!!" << endl;
      
     }
-}
+
+    }
+
 else{
 cout << "Please enter a valid input" << endl;
-cout << "Enter a number between 1 and 100" << endl;
+cout << "Enter a number between 1 and " << maxn  << endl;
 }
     }
 
     }
 
     }
+    else
+     cout << "Inavlid choice.Please enter a valid choice that is: 1,2 or 3" << endl;
+
+}
+
+
 
