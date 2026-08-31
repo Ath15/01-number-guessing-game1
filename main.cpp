@@ -18,30 +18,57 @@ for(int i = 1; i<=35 ; i++){
     }
     cout << endl;;
     cout << "I am thinking of a number between 1 and 100. Can you guess it?" << endl;
-    int number, guess, user_number;
-    int&n1= user_number;
+    int number, guess, n1=0;
+    char c = 'y';
+    
+  
     srand(time(0));
     number = rand()%100 + 1;
-    guess = 1;
+    guess = 0;
+    while(c=='y'){
     while(n1!=number){
     cout << "Enter your guess" << endl;
     cin >> n1;
+    if(n1>= 1 && n1<=100){
+    
+    guess++;
+
+    
     if(n1==number){
         cout << "Your guess is correct" << endl;
         cout << "You won!!"<< endl;
         cout << "The number was : " << number << endl;
         cout << "You guessed in " << guess << " tries" << endl;
+        cout << endl;
+        cout << "Do you want to play again? (y/n)" << endl;
+        cin >> c;
+        if(c=='y'){
+            srand(time(0));
+            number = rand()%100+1;
+            guess = 0;
+        } 
+        else{
+         cout << "Thank you for playing" << endl;
+        }
     }
     else if(n1>number){
         cout << "The guess is not correct " << endl;
         cout << "It is TOO HIGH!!" << endl;
-        guess++;
+      
     }
     else{
          cout << "The guess is not correct " << endl;
         cout << "It is TOO LOW!!" << endl;
-        guess++;
+     
     }
 }
-
+else{
+cout << "Please enter a valid input" << endl;
+cout << "Enter a number between 1 and 100" << endl;
 }
+    }
+
+    }
+
+    }
+
